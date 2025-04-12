@@ -31,14 +31,8 @@
 
     .pig {
       position: absolute;
-      animation: jump 0.5s infinite ease-in-out, growIn 0.5s ease-in;
+      animation: floatPig 5s infinite ease-in-out, growPig 3s ease-in-out forwards;
       user-select: none;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .explode {
-      animation: explode 0.4s forwards;
     }
 
     @keyframes fadeIn {
@@ -46,20 +40,21 @@
       to { opacity: 1; }
     }
 
-    @keyframes jump {
+    @keyframes floatPig {
       0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-30px); }
       100% { transform: translateY(0); }
     }
 
-    @keyframes growIn {
-      from { transform: scale(0); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes explode {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(2.5) rotate(180deg); opacity: 0; }
+    @keyframes growPig {
+      from {
+        transform: scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1.8) rotate(360deg);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -75,24 +70,20 @@
       pig.classList.add('pig');
       pig.textContent = '🐷';
 
-      const size = Math.random() * 60 + 30;
+      const size = Math.random() * 60 + 20;
       pig.style.fontSize = size + 'px';
       pig.style.left = Math.random() * 100 + 'vw';
       pig.style.top = Math.random() * 100 + 'vh';
-
-      pig.addEventListener('click', () => {
-        pig.classList.add('explode');
-        setTimeout(() => pig.remove(), 400);
-      });
+      pig.style.animationDelay = Math.random() * 2 + 's';
 
       document.body.appendChild(pig);
 
       setTimeout(() => {
         pig.remove();
-      }, 8000);
+      }, 6000);
     }
 
-    setInterval(createPig, 150);
+    setInterval(createPig, 100);
   </script>
 </body>
 </html>
