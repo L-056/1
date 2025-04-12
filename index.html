@@ -2,26 +2,57 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>给你的一句话</title>
+  <title>大笨猪警告</title>
   <style>
     body {
-      background-color: #fef6e4;
+      background-color: #fff0f5;
       font-family: "微软雅黑", sans-serif;
       text-align: center;
-      padding: 100px;
+      overflow: hidden;
     }
     h1 {
-      color: #ff6f61;
+      color: #ff69b4;
       font-size: 3em;
+      margin-top: 80px;
+      animation: pop 0.5s ease-in-out;
     }
     p {
-      font-size: 1.5em;
-      color: #333;
+      font-size: 2em;
+      color: #d63384;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    img {
+      width: 300px;
+      margin-top: 30px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>嘿，你好吗？</h1>
-  <p>我只是想告诉你：你真的很像只猪🌟</p>
+  <h1>让你点开了吗？</h1>
+  <p>这下好了吧！</p>
+  <p>上当了吧！</p>
+  <h1 style="color:#ff0000; font-size: 4em;">大笨猪 🐷！</h1>
+
+  <!-- 猪头图片 -->
+  <img src="https://i.imgur.com/t7uz4Ez.png" alt="猪头警告" />
+
+  <!-- 背景音乐 -->
+  <audio autoplay loop>
+    <source src="https://static1.squarespace.com/static/5ff1cd1a5660153c51aa8b0d/t/64cc15ecae3a400165a93f66/1691098605169/%E7%81%B5%E6%84%9F%E8%8F%87.mp3" type="audio/mpeg">
+  </audio>
 </body>
 </html>
