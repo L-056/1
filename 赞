@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>给你的一句话</title>
+  <style>
+    body {
+      background-color: #fef6e4;
+      font-family: "微软雅黑", sans-serif;
+      text-align: center;
+      padding: 100px;
+    }
+    h1 {
+      color: #ff6f61;
+      font-size: 3em;
+    }
+    p {
+      font-size: 1.5em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>嘿，你好吗？</h1>
+  <p>我只是想告诉你：你真的很像只猪🌟</p>
+</body>
+</html>
