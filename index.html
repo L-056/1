@@ -4,22 +4,26 @@
   <meta charset="UTF-8">
   <title>大笨猪警告</title>
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
       background-color: #fff0f5;
       font-family: "微软雅黑", sans-serif;
       text-align: center;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
     }
+
     h1, p {
       animation: fadeIn 1s ease-in-out;
     }
+
     h1 {
       color: #ff69b4;
       font-size: 3em;
       margin-top: 80px;
     }
+
     p {
       font-size: 2em;
       color: #d63384;
@@ -27,8 +31,14 @@
 
     .pig {
       position: absolute;
-      animation: floatPig 5s infinite, growPig 3s ease-in-out forwards;
+      animation: jump 0.5s infinite ease-in-out, growIn 0.5s ease-in;
       user-select: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .explode {
+      animation: explode 0.4s forwards;
     }
 
     @keyframes fadeIn {
@@ -36,21 +46,20 @@
       to { opacity: 1; }
     }
 
-    @keyframes floatPig {
+    @keyframes jump {
       0% { transform: translateY(0); }
-      50% { transform: translateY(-30px); }
+      50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
 
-    @keyframes growPig {
-      from {
-        transform: scale(0.5) rotate(0deg);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1.8) rotate(360deg);
-        opacity: 1;
-      }
+    @keyframes growIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.5) rotate(180deg); opacity: 0; }
     }
   </style>
 </head>
@@ -66,20 +75,25 @@
       pig.classList.add('pig');
       pig.textContent = '🐷';
 
-      const size = Math.random() * 60 + 20;
+      const size = Math.random() * 60 + 30;
       pig.style.fontSize = size + 'px';
       pig.style.left = Math.random() * 100 + 'vw';
       pig.style.top = Math.random() * 100 + 'vh';
-      pig.style.animationDelay = Math.random() * 2 + 's';
+
+      pig.addEventListener('click', () => {
+        pig.classList.add('explode');
+        setTimeout(() => pig.remove(), 400);
+      });
 
       document.body.appendChild(pig);
 
       setTimeout(() => {
         pig.remove();
-      }, 6000);
+      }, 8000);
     }
 
-    setInterval(createPig, 100);
+    setInterval(createPig, 150);
   </script>
 </body>
 </html>
+
