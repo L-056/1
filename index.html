@@ -9,35 +9,48 @@
       font-family: "微软雅黑", sans-serif;
       text-align: center;
       overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    h1, p {
+      animation: fadeIn 1s ease-in-out;
     }
     h1 {
       color: #ff69b4;
       font-size: 3em;
       margin-top: 80px;
-      animation: pop 0.5s ease-in-out;
     }
     p {
       font-size: 2em;
       color: #d63384;
-      animation: fadeIn 1.5s ease-in-out;
     }
-    h2 {
-      width: 300px;
-      margin-top: 30px;
-      animation: float 3s ease-in-out infinite;
+
+    .pig {
+      position: absolute;
+      animation: floatPig 5s infinite, growPig 3s ease-in-out forwards;
+      user-select: none;
     }
-    @keyframes pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    @keyframes float {
+
+    @keyframes floatPig {
       0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+      50% { transform: translateY(-30px); }
       100% { transform: translateY(0); }
+    }
+
+    @keyframes growPig {
+      from {
+        transform: scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1.8) rotate(360deg);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -46,7 +59,27 @@
   <p>这下好了吧！</p>
   <p>上当了吧！</p>
   <h1 style="color:#ff0000; font-size: 4em;">大笨猪！</h1>
-  <h2 style="color:#ff0000; font-size: 4em;">🐷</h2>
-  
+
+  <script>
+    function createPig() {
+      const pig = document.createElement('div');
+      pig.classList.add('pig');
+      pig.textContent = '🐷';
+
+      const size = Math.random() * 60 + 20;
+      pig.style.fontSize = size + 'px';
+      pig.style.left = Math.random() * 100 + 'vw';
+      pig.style.top = Math.random() * 100 + 'vh';
+      pig.style.animationDelay = Math.random() * 2 + 's';
+
+      document.body.appendChild(pig);
+
+      setTimeout(() => {
+        pig.remove();
+      }, 6000);
+    }
+
+    setInterval(createPig, 100);
+  </script>
 </body>
 </html>
